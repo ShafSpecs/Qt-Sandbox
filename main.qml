@@ -22,14 +22,22 @@ Window {
       anchors.horizontalCenter: parent.horizontalCenter
       text: counter.count
       font.pixelSize: 24
+      color: counter.count === 0 ? "black" : counter.isPositive ? "green" : "red"
     }
 
     Row {
       spacing: 10
+
       Button {
         text: "-"
         onClicked: counter.decrement()
       }
+
+      Button {
+        text: qsTr("Reset")
+        onClicked: counter.reset()
+      }
+
       Button {
         text: "+"
         onClicked: counter.increment()

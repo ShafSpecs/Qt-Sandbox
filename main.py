@@ -29,12 +29,19 @@ class Counter(QObject):
     def decrement(self):
         self.set_count(self.get_count() - 1)
 
+    @Slot()
+    def reset(self):
+        self.set_count(0)
+
+    @Property(int, notify=countChanged)
+    def isPositive(self):
+        return self._count > 0
+
 
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
     engine = QQmlApplicationEngine()
 
-    counter = Counter()
     qmlRegisterType(Counter, "CounterModule", 1, 0, "Counter")
 
     engine.load("main.qml")
