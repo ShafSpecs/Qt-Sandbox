@@ -1,7 +1,7 @@
 import sys
 from PySide6.QtCore import QObject, Slot, Signal, Property
 from PySide6.QtGui import QGuiApplication
-from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtQml import QQmlApplicationEngine, qmlRegisterType
 
 
 class Counter(QObject):
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     engine = QQmlApplicationEngine()
 
     counter = Counter()
-    engine.rootContext().setContextProperty("counter", counter)
+    qmlRegisterType(Counter, "CounterModule", 1, 0, "Counter")
 
     engine.load("main.qml")
 

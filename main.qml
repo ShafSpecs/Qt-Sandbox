@@ -2,32 +2,38 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 
+import CounterModule 1.0
+
 Window {
-    width: 300
-    height: 200
-    visible: true
-    title: qsTr("Counter App")
+  width: 300
+  height: 200
+  visible: true
+  title: qsTr("Counter App")
 
-    Column {
-        anchors.centerIn: parent
-        spacing: 20
+  Counter {
+    id: counter
+  }
 
-        Text {
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: counter.count
-            font.pixelSize: 24
-        }
+  Column {
+    anchors.centerIn: parent
+    spacing: 20
 
-        Row {
-            spacing: 10
-            Button {
-                text: "-"
-                onClicked: counter.decrement()
-            }
-            Button {
-                text: "+"
-                onClicked: counter.increment()
-            }
-        }
+    Text {
+      anchors.horizontalCenter: parent.horizontalCenter
+      text: counter.count
+      font.pixelSize: 24
     }
+
+    Row {
+      spacing: 10
+      Button {
+        text: "-"
+        onClicked: counter.decrement()
+      }
+      Button {
+        text: "+"
+        onClicked: counter.increment()
+      }
+    }
+  }
 }
